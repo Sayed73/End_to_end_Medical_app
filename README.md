@@ -1,6 +1,6 @@
 # Health App (Deployed by Flask)
 
-Welcome to the Health App repository This application aims to provide predictions for various health conditions using machine learning models. Whether it's predicting heart disease, diabetes, or pneumonia, my app leverages ML & Deep Learning algorithms to assist users in understanding and managing their health risks.
+Welcome to the Health App repository This application aims to provide predictions for various health conditions using machine learning & Deep Learning models. Whether it's predicting heart disease, diabetes, or pneumonia, my app uses to assist users in understanding and managing their health risks.
 
 ## Features
 
