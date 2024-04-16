@@ -1,0 +1,113 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var img = document.getElementById('image-preview');
+                img.src = reader.result;
+                img.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://media.istockphoto.com/id/1299730658/photo/medical-mri-scan.jpg?s=2048x2048&w=is&k=20&c=3QzwPIv7tNShQFJEHDkpOGIRNg_YqfkiTs9tH8GTZ6U=');
+            background-size: cover;
+            background-position: center;
+        }
+        .header {
+            background-color: #2C6975;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        /* Center the form container */
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Style the form */
+        .form {
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style the file input */
+        .file-input {
+            margin-bottom: 10px;
+        }
+
+        /* Style the image preview */
+        .image-preview {
+            max-width: 300px;
+            max-height: 300px;
+            margin-top: 20px;
+            display: none;
+            border-radius: 10px;
+        }
+
+        /* Style the prediction result */
+        .prediction {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .menu-bar {
+            background-color: #6BB2A0;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .menu-item {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6BB2A0;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #2C6975;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Pneumonia Prediction</h1>
+    </div>
+    <div class="menu-bar">
+        <a href="/" class="menu-item">Home</a>
+        <a href="{{ url_for('heart_disease') }}" class="menu-item">Heart Disease Prediction</a>
+        <a href="{{ url_for('diabetes') }}" class="menu-item">Diabetes Prediction</a>
+    </div>
+    <div class="form-container">
+        <div class="form">
+            <h2>Upload Image</h2>
+            <form id="upload-form" action="/pneumonia" method="post" enctype="multipart/form-data">
+                <input type="file" name="image" accept="image/*" onchange="previewImage(event)" class="file-input">
+                <br>
+                <input type="submit" value="Predict" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+            </form>
+            <img id="image-preview" class="image-preview" src="#" alt="Image Preview">
+            <div id="prediction" class="prediction">
+                {% if prediction %}
+                {{ prediction }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

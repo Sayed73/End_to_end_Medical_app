@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_heart_model.css') }}">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            background-image: url('https://media.istockphoto.com/id/1416791739/photo/hands-holding-heart-anatomy-organ-donor-cardiac-heart-cancer-health-care-hospital-service.jpg?s=2048x2048&w=is&k=20&c=1I5Y9DMzqq2PKtBYArF3LSVLnujZyg030KraJmH0iDw=');
+            background-size: cover;
+            background-position: center;
+        }
+        .header {
+            background-color: #2C6975;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        #result {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .heart-image {
+            width: 100px; /* Adjust the width as needed */
+            display: block;
+            margin: auto;
+            margin-bottom: 20px; /* Add some space below the image */
+        }
+        .menu-bar {
+            background-color: #6BB2A0;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .menu-item {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6BB2A0;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #2C6975;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Heart Disease Prediction</h1>
+    </div>
+    <div class="menu-bar">
+        <a href="/" class="menu-item">Home</a>
+        <a href="{{ url_for('diabetes') }}" class="menu-item">Diabetes Prediction</a>
+        <a href="{{ url_for('pneumonia') }}" class="menu-item">Pneumonia Prediction</a>
+    </div>
+    <h1>Heart Disease Prediction</h1>
+    <form action="/heart_disease" method="post">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required value="{{ request.form['age'] if request.form.get('age') }}">
+
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" required>
+            <option value="Male" {% if request.form.get('sex') == 'Male' %} selected {% endif %}>Male</option>
+            <option value="Female" {% if request.form.get('sex') == 'Female' %} selected {% endif %}>Female</option>
+        </select>
+
+        <label for="cp">Chest Pain Type:</label>
+        <select id="cp" name="cp" required>
+            <option value="typical angina" {% if request.form.get('cp') == "typical angina" %} selected {% endif %}>Typical Angina</option>
+            <option value="atypical angina" {% if request.form.get('cp') == "atypical angina" %} selected {% endif %}>Atypical Angina</option>
+            <option value="non-anginal" {% if request.form.get('cp') == "non-anginal" %} selected {% endif %}>Non-Anginal</option>
+            <option value="asymptomatic" {% if request.form.get('cp') == "asymptomatic" %} selected {% endif %}>Asymptomatic</option>
+        </select>
+
+        <label for="trestbps">Resting Blood Pressure:</label>
+        <input type="number" id="trestbps" name="trestbps" required value="{{ request.form['trestbps'] if request.form.get('trestbps') }}">
+
+        <label for="chol">Cholesterol:</label>
+        <input type="number" id="chol" name="chol" required value="{{ request.form['chol'] if request.form.get('chol') }}">
+
+        <label for="fbs">Fasting Blood Sugar > 120 mg/dl:</label>
+        <select id="fbs" name="fbs" required>
+            <option value="TRUE" {% if request.form.get('fbs') == 'TRUE' %} selected {% endif %}>Yes</option>
+            <option value="FALSE" {% if request.form.get('fbs') == 'FALSE' %} selected {% endif %}>No</option>
+        </select>
+
+        <label for="restecg">Resting Electrocardiographic Results:</label>
+        <select id="restecg" name="restecg" required>
+            <option value="lv hypertrophy" {% if request.form.get('restecg') == 'lv hypertrophy' %} selected {% endif %}>LV Hypertrophy</option>
+            <option value="normal" {% if request.form.get('restecg') == 'normal' %} selected {% endif %}>Normal</option>
+        </select>
+
+        <label for="thalch">Maximum Heart Rate Achieved:</label>
+        <input type="number" id="thalch" name="thalch" required value="{{ request.form['thalch'] if request.form.get('thalch') }}">
+
+        <label for="exang">Exercise Induced Angina:</label>
+        <select id="exang" name="exang" required>
+            <option value="TRUE" {% if request.form.get('exang') == 'TRUE' %} selected {% endif %}>Yes</option>
+            <option value="FALSE" {% if request.form.get('exang') == 'FALSE' %} selected {% endif %}>No</option>
+        </select>
+
+        <label for="oldpeak">ST Depression Induced by Exercise Relative to Rest:</label>
+        <input type="number" id="oldpeak" name="oldpeak" step="0.01" required value="{{ request.form['oldpeak'] if request.form.get('oldpeak') }}">
+
+        <label for="slope">Slope of the Peak Exercise ST Segment:</label>
+        <select id="slope" name="slope" required>
+            <option value="upsloping" {% if request.form.get('slope') == 'upsloping' %} selected {% endif %}>Upsloping</option>
+            <option value="flat" {% if request.form.get('slope') == 'flat' %} selected {% endif %}>Flat</option>
+            <option value="downsloping" {% if request.form.get('slope') == 'downsloping' %} selected {% endif %}>Downsloping</option>
+        </select>
+
+        <button type="submit">Predict</button>
+
+        {% if prediction is defined %}
+        <h2>Prediction: {{ prediction }}</h2>
+        {% endif %}
+    </form>
+    
+</body>
+</html>

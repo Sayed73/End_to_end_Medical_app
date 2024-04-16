@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://media.istockphoto.com/id/1280251169/photo/world-diabetes-day-awareness-concept-the-diabetic-measures-the-level-of-glucose-in-the-blood.jpg?s=2048x2048&w=is&k=20&c=2OsLhJFQaL5ak5llRUIPL6A8t3r8YlZ64HcN2UGhAsw=');
+            background-size: cover;
+        }
+        .header {
+            background-color: #2C6975;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .menu-bar {
+            background-color: #6BB2A0;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .menu-item {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6BB2A0;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #2C6975;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Diabetes Prediction</h1>
+    </div>
+    <div class="menu-bar">
+        <a href="/" class="menu-item">Home</a>
+        <a href="{{ url_for('heart_disease') }}" class="menu-item">Heart Disease Prediction</a>
+        <a href="{{ url_for('pneumonia') }}" class="menu-item">Pneumonia Prediction</a>
+    </div>
+    <div class="container">
+        <h1>Diabetes Prediction</h1>
+        <form action="/diabetes" method="post">
+            <label for="Pregnancies">Number of Pregnancies:</label>
+            <input type="number" id="Pregnancies" name="Pregnancies" required value="{{ request.form['Pregnancies'] if request.form.get('Pregnancies') }}"><br>
+            
+            <label for="Glucose">Glucose Level:</label>
+            <input type="number" id="Glucose" name="Glucose" required value="{{ request.form['Glucose'] if request.form.get('Glucose') }}"><br>
+            
+            <label for="BloodPressure">Blood Pressure:</label>
+            <input type="number" id="BloodPressure" name="BloodPressure" required value="{{ request.form['BloodPressure'] if request.form.get('BloodPressure') }}"><br>
+            
+            <label for="SkinThickness">Skin Thickness:</label>
+            <input type="number" id="SkinThickness" name="SkinThickness" required value="{{ request.form['SkinThickness'] if request.form.get('SkinThickness') }}"><br>
+            
+            <label for="Insulin">Insulin Level:</label>
+            <input type="number" id="Insulin" name="Insulin" required value="{{ request.form['Insulin'] if request.form.get('Insulin') }}"><br>
+            
+            <label for="BMI">BMI:</label>
+            <input type="number" id="BMI" name="BMI" step="0.01" required value="{{ request.form['BMI'] if request.form.get('BMI') }}"><br>
+            
+            <label for="DiabetesPedigreeFunction">Diabetes Pedigree Function:</label>
+            <input type="number" id="DiabetesPedigreeFunction" name="DiabetesPedigreeFunction" step="0.01" required value="{{ request.form['DiabetesPedigreeFunction'] if request.form.get('DiabetesPedigreeFunction') }}"><br>
+            
+            <label for="Age">Age:</label>
+            <input type="number" id="Age" name="Age" required value="{{ request.form['Age'] if request.form.get('Age') }}"><br>
+            
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction is defined %}
+            <h2>Prediction: {{ prediction }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>

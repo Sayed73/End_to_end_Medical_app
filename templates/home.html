@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9fafb;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://media.istockphoto.com/id/949812160/photo/doctor-in-hospital-background-with-copy-space.jpg?s=2048x2048&w=is&k=20&c=hPPMsjrZ9p_78U3V3s-p3fgjQMhV601XTrwCJN2Gpl4=');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .header {
+            background-color: #2C6975;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        .menu-bar {
+            background-color: #6BB2A0;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .menu-item {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6BB2A0;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #2C6975;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 30px;
+        }
+        .prediction-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #E0ECDE;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .prediction-item:hover {
+            transform: translateY(-5px);
+        }
+        .prediction-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        .prediction-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .prediction-description {
+            font-size: 16px;
+            color: #555;
+        }
+        .footer {
+            background-color: #2C6975;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Medical Prediction Models</h1>
+    </div>
+    <div class="menu-bar">
+        <!-- <a href="/" class="menu-item">Home</a> -->
+        <a href="{{ url_for('heart_disease') }}" class="menu-item">Heart Disease Prediction</a>
+        <a href="{{ url_for('diabetes') }}" class="menu-item">Diabetes Prediction</a>
+        <a href="{{ url_for('pneumonia') }}" class="menu-item">Pneumonia Prediction</a>
+    </div>
+    <br>
+    <div class="container">
+        <div class="prediction-item">
+            <i class="fas fa-heart prediction-icon"></i>
+            <h2 class="prediction-title">Heart Disease Prediction</h2>
+            <p class="prediction-description">Predicts the likelihood of a person having heart disease based on various health metrics.</p>
+        </div>
+        <div class="prediction-item">
+            <i class="fas fa-user-md prediction-icon"></i>
+            <h2 class="prediction-title">Diabetes Prediction</h2>
+            <p class="prediction-description">Predicts the likelihood of a person having diabetes based on demographic and health data.</p>
+        </div>
+        <div class="prediction-item">
+            <i class="fas fa-lungs prediction-icon"></i>
+            <h2 class="prediction-title">Pneumonia Prediction</h2>
+            <p class="prediction-description">Predicts the presence of pneumonia in a chest X-ray image using deep learning.</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Author: Sayed Elzoghby | <a href="https://github.com/Sayed73">GitHub</a></p>
+    </div>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
