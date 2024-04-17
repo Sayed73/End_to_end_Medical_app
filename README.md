@@ -2,6 +2,7 @@
 
 Welcome to the Health App repository This application aims to provide predictions for various health conditions using machine learning & Deep Learning models. Whether it's predicting heart disease, diabetes, or pneumonia, my app uses to assist users in understanding and managing their health risks.
 
+
 ## Features
 
 - **Heart Disease Prediction:** Predicts the likelihood of a person having heart disease based on various health metrics.
@@ -48,6 +49,8 @@ Open your web browser and navigate to ```http://127.0.0.1:5000``` to access the 
 - Follow the instructions provided for each prediction model to input the required data.
 - Receive the prediction results and take necessary actions based on the insights provided by the app.
 
-## Author
+## Created by
 
-**Sayed Elzoghby**
+**[Sayed Elzoghby](https://www.linkedin.com/in/sayed-elzoghby-89542a216/)**
+
+
