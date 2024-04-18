@@ -2,6 +2,8 @@
 
 Welcome to the Health App repository This application aims to provide predictions for various health conditions using machine learning & Deep Learning models. Whether it's predicting heart disease, diabetes, or pneumonia, my app uses to assist users in understanding and managing their health risks.
 
+[LinkedIn Post with the deployment video](https://www.linkedin.com/posts/sayed-elzoghby-89542a216_datascience-machinelearning-healthtech-activity-7186281524399390720-gZDc?utm_source=share&utm_medium=member_desktop)
+
 
 ## Features
 
